@@ -3,6 +3,7 @@ import { StrictMode } from 'react'
 import { RouterProvider, createRouter } from '@tanstack/react-router'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import './index.css'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 // Import the generated route tree
 import { routeTree } from './routeTree.gen'
@@ -31,6 +32,7 @@ if (!rootElement.innerHTML) {
     <StrictMode>
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
+        <ReactQueryDevtools />
       </QueryClientProvider>
     </StrictMode>,
   )

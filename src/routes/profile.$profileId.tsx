@@ -26,11 +26,11 @@ async function fetchProfileData(profileId: string): Promise<ProfileData> {
 
 export const Route = createFileRoute('/profile/$profileId')({
     component: Profile,
-    loader: ({ context, params }) => {
+    loader: ({ context, params: { profileId } }) => {
         const { queryClient } = context as { queryClient: QueryClient }
         return queryClient.prefetchQuery({
-            queryKey: ['profile', params.profileId],
-            queryFn: () => fetchProfileData(params.profileId),
+            queryKey: ['profile', profileId],
+            queryFn: () => fetchProfileData(profileId),
         })
     }
 })
