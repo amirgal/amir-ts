@@ -11,18 +11,11 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as AboutImport } from './routes/about'
 import { Route as R404Import } from './routes/404'
 import { Route as IndexImport } from './routes/index'
-import { Route as ProfileProfileIdImport } from './routes/profile.$profileId'
+import { Route as TaskTaskIdImport } from './routes/task.$taskId'
 
 // Create/Update Routes
-
-const AboutRoute = AboutImport.update({
-  id: '/about',
-  path: '/about',
-  getParentRoute: () => rootRoute,
-} as any)
 
 const R404Route = R404Import.update({
   id: '/404',
@@ -36,9 +29,9 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const ProfileProfileIdRoute = ProfileProfileIdImport.update({
-  id: '/profile/$profileId',
-  path: '/profile/$profileId',
+const TaskTaskIdRoute = TaskTaskIdImport.update({
+  id: '/task/$taskId',
+  path: '/task/$taskId',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -60,18 +53,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof R404Import
       parentRoute: typeof rootRoute
     }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutImport
-      parentRoute: typeof rootRoute
-    }
-    '/profile/$profileId': {
-      id: '/profile/$profileId'
-      path: '/profile/$profileId'
-      fullPath: '/profile/$profileId'
-      preLoaderRoute: typeof ProfileProfileIdImport
+    '/task/$taskId': {
+      id: '/task/$taskId'
+      path: '/task/$taskId'
+      fullPath: '/task/$taskId'
+      preLoaderRoute: typeof TaskTaskIdImport
       parentRoute: typeof rootRoute
     }
   }
@@ -82,46 +68,41 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/404': typeof R404Route
-  '/about': typeof AboutRoute
-  '/profile/$profileId': typeof ProfileProfileIdRoute
+  '/task/$taskId': typeof TaskTaskIdRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/404': typeof R404Route
-  '/about': typeof AboutRoute
-  '/profile/$profileId': typeof ProfileProfileIdRoute
+  '/task/$taskId': typeof TaskTaskIdRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/404': typeof R404Route
-  '/about': typeof AboutRoute
-  '/profile/$profileId': typeof ProfileProfileIdRoute
+  '/task/$taskId': typeof TaskTaskIdRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/404' | '/about' | '/profile/$profileId'
+  fullPaths: '/' | '/404' | '/task/$taskId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/404' | '/about' | '/profile/$profileId'
-  id: '__root__' | '/' | '/404' | '/about' | '/profile/$profileId'
+  to: '/' | '/404' | '/task/$taskId'
+  id: '__root__' | '/' | '/404' | '/task/$taskId'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   R404Route: typeof R404Route
-  AboutRoute: typeof AboutRoute
-  ProfileProfileIdRoute: typeof ProfileProfileIdRoute
+  TaskTaskIdRoute: typeof TaskTaskIdRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   R404Route: R404Route,
-  AboutRoute: AboutRoute,
-  ProfileProfileIdRoute: ProfileProfileIdRoute,
+  TaskTaskIdRoute: TaskTaskIdRoute,
 }
 
 export const routeTree = rootRoute
@@ -136,8 +117,7 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/404",
-        "/about",
-        "/profile/$profileId"
+        "/task/$taskId"
       ]
     },
     "/": {
@@ -146,11 +126,8 @@ export const routeTree = rootRoute
     "/404": {
       "filePath": "404.tsx"
     },
-    "/about": {
-      "filePath": "about.tsx"
-    },
-    "/profile/$profileId": {
-      "filePath": "profile.$profileId.tsx"
+    "/task/$taskId": {
+      "filePath": "task.$taskId.tsx"
     }
   }
 }
